@@ -1,0 +1,526 @@
+/* Базовые настройки (сброс отступов браузера по умолчанию) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; 
+}
+
+/* Создаем переменные для цветов, чтобы не писать HEX коды каждый раз */
+:root {
+    --bg-red: #A82C2C;       
+    --main-bg: #DFD7CF;      
+    --blue-border: #2B3A8A;  
+    --yellow-card: #F9D868;  
+    --red-btn: #C73434;      
+}
+h1, h2, h3, h4, p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+body {
+    background-color: var(--bg-red);
+    
+}
+
+/* Контейнер по центру экрана. Ограничивает ширину белой зоны */
+.container {
+    max-width: 1000px;
+    margin: 0 auto; /* Автоматические отступы слева и справа центрируют блок */
+    padding: 0 20px; /* Внутренние отступы по бокам */
+}
+
+/* --- КНОПКИ --- */
+.btn {
+    padding: 10px 25px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-blue { background-color: var(--blue-border);
+ display: inline-block;
+    padding: 15px 40px;             
+    font-size: 20px;                /* Увеличиваем шрифт */
+    font-weight: bold;
+    border-radius: 25px;            
+    text-decoration: none;
+    text-transform: uppercase;      /* Все буквы большие */ }
+
+.btn-red { 
+    background-color: var(--red-btn); 
+    font-size: 18px;
+    padding: 18px 45px;
+    border-radius: 30px;
+}
+
+/* --- ШАПКА (HEADER) --- */
+
+
+.header {
+    background-color: var(--bg-red);
+}
+
+/* 1. Главный контейнер шапки — задаем ему строго ширину будущего свитка */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1350px;         
+    margin: 0 auto;            
+    padding: 20px 40px;        
+    box-sizing: border-box;
+}
+/* Изменяем размер твоего круглого логотипа, чтобы он не был маленьким */
+.logo {
+    height: 120px;                  
+    width: auto;
+}
+
+/* 3. Центральная группа */
+.header-center-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;                      
+}
+
+
+.header-r-corner-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* 6. Размеры для Кота и Человечка */
+.header-character {
+    height: 95px;                  
+    width: auto;
+    object-fit: contain;
+}
+
+/* 7. Сажаем Джекса  */
+.header-character.jax {
+    height: 115px;                  /* Джекс чуть выше всех */
+    margin: 0;
+    position: relative;
+    top: -5px;                      /* Слегка приподнимаем */
+}
+
+
+
+
+.phone-badge {
+    background-color: var(--blue-border);
+    color: white;
+    padding: 15px 40px;
+    font-size: 20px;               
+    font-weight: bold;
+    border-radius: 25px; 
+}
+.main-scroll {
+      background-color: var(--main-bg); 
+    
+      max-width: 1300px;               /* Ширина твоего свитка */
+    margin: 0 auto;                  /* Центрируем его */
+    display: flex;                   /* Помогаем блокам стоять ровно */
+    flex-direction: column;          /* Выстраиваем их в колонну */
+}
+
+
+
+/* --- ГЛАВНЫЙ ЭКРАН (HERO) --- */
+.hero {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+.hero-card {
+    /* 1. Возвращаем умное заполнение, чтобы картинка занимала ВСЁ пространство */
+    background-image: url('images/hero-bg.jpg');
+    background-size: cover;          
+    
+    /* 2. Двигаем картинку так, чтобы показать и голову, и часть акулы снизу */
+    background-position: center 25%; 
+    background-repeat: no-repeat;
+
+    /* 3. Четко прижимаем к краям свитка */
+    width: 100%; 
+    border-radius: 0; 
+    margin: 0;
+
+    
+    height: 550px; 
+    
+    /* 5. Центрируем твой текст и кнопку */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px; 
+    box-sizing: border-box;
+}
+
+
+/* Желтая полупрозрачная плашка поверх фона */
+.hero-card h1, .hero-card p {
+    background-color: rgba(249, 216, 104, 0.8); /* Желтый с прозрачностью */
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.hero-card p {
+    font-size: 20px; 
+    font-weight: bold; 
+}
+
+
+
+
+/* --- ПРЕИМУЩЕСТВА (FEATURES) --- */
+.features-wrapper {
+    /* Используем твой фирменный синий цвет для рамки */
+    border: 5px solid var(--blue-border); 
+    border-radius: 25px;
+    
+    /* Увеличиваем внутренние отступы, чтобы блок стал просторнее и шире */
+    padding: 50px 40px; 
+    margin: 50px 0;
+    
+    /* ВАЖНО: position: relative позволяет Тудлсу встать поверх рамки */
+    position: relative; 
+}
+
+.features-grid {
+    display: grid;
+    /* Делаем три колонки с расстоянием */
+    grid-template-columns: repeat(3, 1fr);
+    /* Увеличиваем вертикальные отступы между строками преимуществ */
+    row-gap: 45px; 
+    column-gap: 30px;
+}
+
+.feature-item h3 {
+    color: var(--red-btn); 
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+
+.feature-item p {
+    font-size: 16px;
+    color: #A35D5D; 
+    line-height: 1.4;
+    
+    /* ВАЖНО: ограничиваем ширину текста, чтобы он аккуратно переносился колонкой */
+    max-width: 240px; 
+}
+/* Ровняем Тудлса и сажаем его ровно на нижнюю рамку блока */
+.features-character {
+    position: absolute;
+    /* Управляем положением: прижимаем к правому нижнему углу */
+    bottom: -90px; 
+    right: 33%; 
+    
+    /* Задаем ему оптимальный размер  */
+    height: 160px; 
+    width: auto;
+    object-fit: contain;
+    z-index: 10;
+}
+
+/* --- СЕКЦИЯ "У НАС ВЫБИРАЮТ" --- */
+.popular-wrapper {
+    border: 4px solid var(--yellow-card);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    margin-bottom: 40px;
+
+   
+}
+
+.section-badge {
+    top: -12px;
+    left: 20px;
+    background-color: var(--main-bg);
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+.popular-img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.catalog-link {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* --- ОТЗЫВЫ --- */
+
+.reviews {
+    padding: 40px 0;
+}
+
+/* Общий контейнер для отзывов */
+.reviews-container {
+    display: flex;
+    flex-direction: column; /* Располагаем отзывы друг под другом */
+    gap: 30px;              /* Расстояние между карточками */
+    padding: 30px 0;
+    width: 100%;
+}
+
+/* Базовый стиль карточки отзыва */
+
+
+.reviews-container {
+    display: flex;
+    flex-direction: column; 
+    gap: 30px;
+    padding: 40px 0;
+    position: relative; 
+    width: 100%;
+}
+
+.review-card {
+    background-color: var(--yellow-card);
+    padding: 25px 30px;
+    border-radius: 35px; 
+    width: 65%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+}
+
+.review-left {
+    align-self: flex-start;
+}
+
+.review-right {
+    align-self: flex-end; 
+}
+
+/* Общие стили для внешних персонажей */
+.review-character {
+    position: absolute;
+    width: auto;
+    z-index: 5; /* Чтобы они были на уровне со свитком */
+}
+
+/* Сажаем Кейна слева внизу под первым отзывом */
+.review-character.jax-kane {
+    height: 180px;      
+    left: -10px;        
+    bottom: 20px;       
+}
+
+/* Сажаем милого человечка справа вверху, около второго отзыва */
+.review-character.cute-man {
+    height: 180px;
+    right: 20px;       
+    top: 40px;          
+}
+
+/* Стили аватарок и текстов остаются прежними */
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.avatar {
+    width: 70px !important;
+    height: 70px !important;
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+
+/* Стили текста внутри отзыва */
+.review-header h4 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 4px;
+}
+
+.review-product { 
+    font-size: 13px; 
+    color: #555; 
+}
+
+.review-text { 
+    font-size: 15px;
+    line-height: 1.4;
+    color: #111;
+}
+
+
+
+/* --- ПОДВАЛ (FOOTER) --- */
+.footer {
+    background-color: var(--bg-red);
+    padding: 35px 0 45px 0; /* Уменьшили отступы, чтобы приподнять весь подвал повыше */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Главный контейнер подвала */
+.footer-content {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    
+    /* выравниваем левую зону, Короля и контакты строго по верхней линии */
+    align-items: flex-start; 
+    box-sizing: border-box;
+}
+
+/* --- ЛЕВАЯ ЗОНА (Логотип, текст, зубы) --- */
+.footer-left-zone {
+    display: flex;
+    align-items: flex-start; 
+    flex: 1;
+    position: relative; 
+}
+
+.footer-brand {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* ИСПРАВЛЕНИЕ №2: ДЕЛАЕМ ЛОГОТИП ЕЩЕ БОЛЬШЕ */
+.footer-logo {
+    height: 145px; 
+    width: auto;
+    object-fit: contain;
+    display: block;
+     margin-top: -20px; 
+}
+
+/* ТЕКСТ НА УРОВНЕ КОНТАКТОВ */
+.footer-title {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.2;
+    text-transform: lowercase;
+    white-space: pre-line;
+    
+    /* Сдвиг вниз ровно на столько, чтобы буквы шли в один ряд со словом "контакты" */
+    margin-top: -25px; 
+}
+
+
+.footer-teeth-icon {
+    position: absolute;
+    
+    /* Точные координаты: сажаем его прямо под строчки текста рядом с логотипом */
+    left: 70px;  
+    top: 100px;   
+    
+    height: 140px; 
+    width: auto;
+    object-fit: contain;
+    transform: rotate(-10deg); /*  наклон */
+    z-index: 10;
+}
+
+/* --- ЦЕНТРАЛЬНАЯ ЗОНА (КОРОЛЬ КОРОЛЁР) --- */
+.footer-center-zone {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+/* Королер */
+.footer-king-img {
+    height: 250px; 
+    width: auto;
+    object-fit: contain;
+    margin-top: -10px; /* Слегка приподнимаем его кверху */
+}
+
+/* --- ПРАВАЯ ЗОНА (КОНТАКТЫ И СОЦСЕТИ) --- */
+.footer-right-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    flex: 1;
+    padding-left: 50px;
+}
+
+.contacts-title {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: lowercase;
+    margin-top: 12px; 
+}
+
+/* БЛОК ТЕЛЕФОНА И ИКОНКА */
+.footer-phone-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/*  ИКОНКА ТЕЛЕФОНА В РАЗМЕР ОСТАЛЬНЫХ */
+.phone-icon {
+    display: block;
+    width: 38px;  
+    height: 38px;
+}
+
+.phone-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.footer-phone-link {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    text-transform: lowercase;
+}
+
+/* СОЦСЕТИ */
+.footer-socials {
+    display: flex;
+    gap: 10px;
+}
+
+.social-item {
+    display: block;
+    width: 38px; /* Все кнопочки  одинаковые */
+    height: 38px;
+}
+
+.social-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

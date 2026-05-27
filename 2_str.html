@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Мягкие игрушки | Расширенный каталог</title>
+    <style>
+        /* ---------- СБРОС И БАЗА ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-red: #A82C2C;
+            --main-bg: #DFD7CF;
+            --blue-border: #2B3A8A;
+            --yellow-card: #F9D868;
+            --red-btn: #C73434;
+            --text-dark: #2c2b28;
+        }
+
+        body {
+            font-family: 'Arial', 'Segoe UI', 'Montserrat', sans-serif;
+            background-color: var(--bg-red);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Центрирующий контейнер (светлая область) */
+        .main-wrapper {
+            background-color: var(--main-bg);
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 48px 48px 0 0;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+            flex: 1;
+        }
+
+        /* Общий контейнер отступов */
+        .container {
+            padding: 0 30px;
+        }
+
+        /* ---------- ШАПКА (HEADER) ---------- */
+        .header {
+            background-color: var(--bg-red);
+            width: 100%;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            height: 110px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.2));
+        }
+
+        /* центральная группа с котиками и телефоном */
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .header-character {
+            height: 90px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .jax-character {
+            height: 115px;
+            position: relative;
+            top: -5px;
+        }
+
+        .phone-badge {
+            background-color: var(--blue-border);
+            color: white;
+            padding: 12px 28px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 40px;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* ---------- КАРТОЧКИ ТОВАРОВ (КАТАЛОГ) ---------- */
+        .catalog-section {
+            padding: 50px 30px 60px 30px;
+        }
+
+        .section-title {
+            font-size: 44px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 45px;
+            color: var(--blue-border);
+            background: linear-gradient(135deg, #2B3A8A, #A82C2C);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--red-btn);
+            margin: 16px auto 0;
+            border-radius: 4px;
+        }
+
+        /* Сетка карточек — адаптивная, красивая */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+            margin-bottom: 40px;
+        }
+
+        /* Карточка товара (единый стиль) */
+        .product-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            transition: all
+
+
+0.25s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f2e4d8;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-img {
+            background: #faf3ea;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 35px 20px;
+            min-height: 240px;
+        }
+
+        .product-img img {
+            max-width: 85%;
+            max-height: 180px;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.03);
+        }
+
+        .product-info {
+            padding: 22px 20px 28px;
+            background: #fffef8;
+            border-top: 2px dashed var(--yellow-card);
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1f1f2b;
+            margin-bottom: 12px;
+            line-height: 1.3;
+            text-transform: uppercase;
+            letter-spacing: -0.2px;
+        }
+
+        .product-price {
+            font-size: 30px;
+            font-weight: 900;
+            color: var(--red-btn);
+            margin: 14px 0 20px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .price-currency {
+            font-size: 18px;
+            font-weight: 500;
+            color: #7a5a4e;
+        }
+
+        .btn-order {
+            background-color: var(--blue-border);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px 0;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-order:hover {
+            background-color: #1f2c6b;
+            transform: scale(0.98);
+        }
+
+        .offer-message {
+            background-color: var(--yellow-card);
+            padding: 20px 24px;
+            border-radius: 60px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 25px;
+            color: #2b2b2b;
+        }
+
+        .offer-message a {
+            color: var(--blue-border);
+            text-decoration: underline;
+            font-weight: 800;
+            margin-left: 8px;
+        }
+
+        /* ---------- ПОДВАЛ (FOOTER)  ---------- */
+        .footer {
+            background-color: var(--bg-red);
+            width: 100%;
+            padding: 40px 0 50px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        /* Левая зона: лого + текст + зубастик */
+        .footer-left {
+            flex: 1;
+            position: relative;
+            min-width: 200px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            height: 145px;
+            width: auto;
+            object-fit: contain;
+            margin-top: -20px;
+        }
+
+        .footer-title {
+            color: white;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.2;
+            white-space: pre-line;
+            text-transform: lowercase;
+            margin-top: -25px;
+        }
+
+        .footer-teeth {
+            position: absolute;
+            left: 70px;
+            top: 100px;
+            height: 130px;
+            transform: rotate(-8deg);
+            opacity: 0.9;
+
+
+}
+
+        .footer-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Выравнивание по верхнему краю */
+    gap: 12px;
+    min-width: 150px;
+}
+
+.home-footer-btn {
+    color: var(--blue-border);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: var(--yellow-card);
+    padding: 10px 24px;
+    border-radius: 40px;
+    margin-bottom: 8px;  /* Отступ только снизу */
+}
+
+.footer-king {
+    height: 240px;
+    width: auto;
+    object-fit: contain;
+}
+
+        /* Правая зона: контакты, телефон, соцсети */
+        .footer-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+            min-width: 200px;
+        }
+
+        .contacts-title {
+            color: white;
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: lowercase;
+            margin-top: 5px;
+            letter-spacing: -0.3px;
+        }
+
+        .footer-phone-block {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .phone-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,240,0.2);
+            border-radius: 50%;
+            padding: 8px;
+        }
+
+        .phone-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-phone-link {
+            color: white;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+     /* СОЦСЕТИ */
+.footer-socials {
+    display: flex;
+    gap: 10px;
+}
+
+.social-item {
+    display: block;
+    width: 38px; /* Все кнопочки аккуратные и одинаковые */
+    height: 38px;
+}
+
+.social-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+       
+
+        /* Адаптивность */
+       /* Адаптивность */
+@media screen and (max-width: 900px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-right {
+        align-items: center;
+    }
+    .footer-brand {
+        justify-content: center;
+    }
+    .header-content {
+        justify-content: center;
+    }
+    .catalog-section {
+        padding: 40px 20px;
+    }
+    .container {
+        padding: 0 20px;
+    }
+}
+
+
+      @media screen and (max-width: 650px) {
+    .product-title {
+        font-size: 18px;
+    }
+    .product-price {
+        font-size: 26px;
+    }
+    .section-title {
+        font-size: 32px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<!-- ШАПКА (только лого, персонажи, телефон) -->
+<header class="header">
+    <div class="header-content">
+        <!-- Левый логотип -->
+        <img class="logo" src="images/logo.png" alt="Логотип магазина">
+
+        <!-- Центральная зона: персонажи + телефон -->
+        <div class="header-center">
+            <img class="header-character" src="images/purpl_cat.png" alt="котик">
+            <div class="phone-badge">8 800 055 35 35</div>
+            <img class="header-character jax-character" src="images/yellow_man.png"
+            alt="желтый чел">
+        </div>
+
+        <!-- Правая иконка для баланса -->
+        <div class="header-right">
+            <img class="header-character" src="images/jax.png" alt="джекс">
+        </div>
+    </div>
+</header>
+
+<!-- ОСНОВНОЙ БЛОК: ТОЛЬКО КАРТОЧКИ (каталог) + добавили 2 новые карточки -->
+<div class="main-wrapper">
+    <div class="catalog-section">
+        <h2 class="section-title">🐾 МЯГКИЕ ИГРУШКИ 🐾</h2>
+
+        <!-- Сетка карточек товаров — теперь 8 позиций (добавлены 7 и 8) -->
+        <div class="catalog-grid">
+            <!-- 1. DW Дэнди 2000р -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="images/dandy.jpg"DW Дэнди">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Мягкая игрушка DW Дэнди</div>
+                    <div class="product-price">2000 ₽ <span class="price-currency">/ шт</span></div>
+                    <a href="#" class="btn-order">Приобрести</a>
+                </div>
+            </div>
+
+            <!-- 2. PPT CatNap 4000р -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="images/cat_toy.jpg"CatNap">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">мягкая игрушка PPT CatNap</div>
+                    <div class="product-price">4000 ₽ <span class="price-currency">/ шт</span></div>
+                    <a href="#" class="btn-order">Приобрести</a>
+                </div>
+            </div>
+
+            <!-- 3. Геншин на выбор 8000р -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="images/aranar_toy.jpg"Геншин игрушка">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">мягкая игрушка геншин на выбор</div>
+                    <div class="product-price">8000 ₽ <span class="price-currency">/ любой персонаж</span></div>
+                    <a href="#" class="btn-order">Приобрести</a>
+                </div>
+            </div>
+
+            <!-- 4. УЦЦ королёр 5000р -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="images/kinger.jpg"Королёр">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">мягкая игрушка УЦЦ королёр</div>
+                    <div class="product-price">5000 ₽ <span class="price-currency">/ классический</span></div>
+                    <a href="#" class="btn-order">Приобрести</a>
+                </div>
+            </div>
+
+            <!-- 5. УЦЦ королёр сплющенный 8000р -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="images/kinger_kvadrat.jpg"Сплющенный королёр">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">мягкая игрушка УЦЦ королёр сплющенный</div>
+                    <div class="product-price">8000 ₽ <span class="price-currency">/ эксклюзив</span></div>
+                    <a href="#" class="btn-order">Приобрести</a>
+                </div>
+            </div>
+
+            <!-- 6. Додоко геншин 9500р -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://avatars.mds.yandex.net/i?id=e8e99b27fa0f84b6b539273be21f601bd38b6280-10927283-images-thumbs&n=13&quot; alt="Додоко">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">мягкая игрушка Додоко
+
+
+геншин</div>
+                    <div class="product-price">9500 ₽ <span class="price-currency">/ лимит</span></div>
+                    <a href="#" class="btn-order">Приобрести</a>
+                </div>
+            </div>
+
+            <!-- ========== НОВАЯ КАРТОЧКА №7: Хагги Вагги (плюшевый монстр) ========= -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="images/huggy.jpg"Хагги Вагги">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Плюшевый Хагги Вагги</div>
+                    <div class="product-price">3500 ₽ <span class="price-currency">/ 40 см</span></div>
+                    <a href="#" class="btn-order">Приобрести</a>
+                </div>
+            </div>
+
+            <!-- ========== НОВАЯ КАРТОЧКА №8: Чеширский кот (мягкий) ========= -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="images/gub.jpg"Губ">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Мягкая игрушка Губ ДВ</div>
+                    <div class="product-price">4200 ₽ <span class="price-currency">/ обнимашкер</span></div>
+                    <a href="#" class="btn-order">Приобрести</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Блок предложения "Не нашли мерч?" -->
+        <div class="offer-message">
+            📦 Не нашли нужный мерч? Присылайте ссылку — мы рассмотрим ваше предложение в течение 1 года!
+            <a href="https://vk.com/swungsaturn340">Написать нам →</a>
+        </div>
+    </div>
+</div>
+
+<!-- ПОДВАЛ (только логотип, король, контакты, соцсети) -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Левая колонка: логотип и текст + зубастик -->
+        <div class="footer-left">
+            <div class="footer-brand">
+                <img class="footer-logo" src="images/logo.png" alt="лого подвала">
+                <div class="footer-title">Магазин зарубежных товаров</div>
+            </div>
+            <img class="footer-teeth" src="images/teeth_sticker.png" alt="зубастик">
+        </div>
+
+     <!-- Центральная зона: король королёр (кнопка сверху) -->
+  <div class="footer-center">
+      <a href="ZavHTML.html" class="home-footer-btn">🏠 На главную</a>
+      <img class="footer-king" src="images/king_character.png" alt="Король Королёр">
+  </div>
+        <!-- Правая колонка: контакты, телефон, соцсети -->
+        <div class="footer-right">
+            <div class="contacts-title">контакты</div>
+            <div class="footer-phone-block">
+                <div class="phone-icon">
+                    <img src="images/Phone.png" alt="телефон">
+                </div>
+                <a href="tel:880005553535" class="footer-phone-link">8 800 055 35 35</a>
+            </div>
+            <div class="footer-socials">
+                <a href="https://www.tumblr.com/blog/swungsaturn34o" class="social-item"><img src="images/ico_twitter.svg" alt="Twitter"></a>
+                <a href="https://wa.me/79500448790" class="social-item"><img src="images/ico_whatsapp.svg" alt="WhatsApp"></a>
+                <a href="t.me/swungsaturn340" class="social-item"><img src="images/ico_telegram.svg" alt="Telegram"></a>
+                <a href="https://vk.com/swungsaturn340" class="social-item"><img src="images/ico_vk.svg" alt="VK"></a>
+                <a href="https://www.instagram.com/zlat1slava?igsh=MW53N2FiemV2bW11eA==" class="social-item"><img src="images/ico_instagram.svg" alt="Instagram"></a>
+                <a href="https://www.tumblr.com/blog/swungsaturn34o" class="social-item"><img src="images/ico_twitch.svg" alt="Twitch"></a>
+            </div>
+        </div>
+
+
+
+</div>
+</footer>
+
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Создаём красивое уведомление
+        function showPhoneNotification() {
+            // Проверяем, существует ли уже такое уведомление
+            if (document.getElementById('custom-notification')) return;
+            
+            const notification = document.createElement('div');
+            notification.id = 'custom-notification';
+            notification.innerHTML = `
+                <div style="
+                    position: fixed;
+                    bottom: 30px;
+                    right: 30px;
+                    background: #2B3A8A;
+                    color: white;
+                    padding: 16px 24px;
+                    border-radius: 50px;
+                    font-weight: bold;
+                    font-size: 18px;
+                    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+                    z-index: 9999;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    animation: slideIn 0.3s ease;
+                ">
+                    <span>📞</span>
+                    <span>Для приобретения позвоните: <strong>8 800 555 35 35</strong></span>
+                    <button style="
+                        background: none;
+                        border: none;
+                        color: white;
+                        font-size: 20px;
+                        cursor: pointer;
+                        margin-left: 10px;
+                    " onclick="this.parentElement.remove()">✕</button>
+                </div>
+                <style>
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                </style>
+            `;
+            document.body.appendChild(notification);
+            
+            // Автоматическое исчезновение через 5 секунд
+            setTimeout(() => {
+                if (notification) notification.remove();
+            }, 5000);
+        }
+        
+        // Навешиваем на все кнопки в карточках
+        const buttons = document.querySelectorAll('.product-card .btn-order, .product-card a, .product-card button');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showPhoneNotification();
+            });
+        });
+    });
+</script>
+</html>
